@@ -1,4 +1,4 @@
-# KMT-Ki mit talál?
+# GourmetGuru
 
 Szakdolgozatom témája, egy személyreszabott recept kereső/készítő applikáció, mely megszeretné könnyíteni mindennapjaink.
 Az applikáció lehetőséget nyújt saját fiók létrehozására, ahonnan szerkeszteni,keresni,készíteni tudjuk kedvenc receptjeink.
@@ -6,7 +6,6 @@ Az alkalmazás számos további funkciót tartalmaz, ami még egyedibbé teszi a
 
 * Fiók létrehozás
 * Keresés
-* KMT
 * Kalória tervező
 * Kedvenc receptek/receptek létrehozása
 
