@@ -41,11 +41,11 @@ class _HomePageState extends State<HomePage>{
           children: [
           Icon(Icons.restaurant_menu),
           SizedBox(width: 10),
-          Text("Food Recipe")
+          Text("GourmetGuru")
         ],),
       ),
       body: isloading 
-      ? Center(child: CircularProgressIndicator())
+      ? Center(child: ElevatedButton(onPressed: () {},child: Text("ElevatedButton"),))
        : ListView.builder(
         itemCount:  recipes.length,
         itemBuilder: (context, index)
