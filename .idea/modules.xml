@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/ki_mit_talal/ki_mit_talal.iml" filepath="$PROJECT_DIR$/ki_mit_talal/ki_mit_talal.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ki_mit_talal/android/ki_mit_talal_android.iml" filepath="$PROJECT_DIR$/ki_mit_talal/android/ki_mit_talal_android.iml" />
     </modules>
   </component>
 </project>
