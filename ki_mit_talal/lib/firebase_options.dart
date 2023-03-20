@@ -3,6 +3,7 @@
 import 'package:firebase_core/firebase_core.dart' show FirebaseOptions;
 import 'package:flutter/foundation.dart'
     show defaultTargetPlatform, kIsWeb, TargetPlatform;
+import 'package:ki_mit_talal/api_keys.dart';
 
 /// Default [FirebaseOptions] for use with your Firebase apps.
 ///
@@ -50,7 +51,7 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyBXCqcfSnN_WsZFhfRhjon_l3pE5gUtLi0',
+    apiKey: GOOGLEAPI,
     appId: '1:856129792391:android:e10f00464e642149ec0b22',
     messagingSenderId: '856129792391',
     projectId: 'gourmetguru-aa103',
@@ -58,7 +59,7 @@ class DefaultFirebaseOptions {
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyDse9JGui4mLsA5b0yrrID4sBknh3EhL7o',
+    apiKey: GOOGLEAPI,
     appId: '1:856129792391:ios:9926b1771158b6b5ec0b22',
     messagingSenderId: '856129792391',
     projectId: 'gourmetguru-aa103',
