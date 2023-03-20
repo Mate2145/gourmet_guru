@@ -7,13 +7,14 @@ import 'package:ki_mit_talal/features/authentication/screens/on_boarding/on_boar
 import 'package:ki_mit_talal/features/authentication/screens/sign_up/sign_up_screen.dart';
 import 'package:ki_mit_talal/features/authentication/screens/welcome/welcome_screen.dart';
 import 'package:ki_mit_talal/features/core/screens/dashboard/dashboard.dart';
+import 'package:ki_mit_talal/firebase/auth/auth.dart';
 import 'package:ki_mit_talal/firebase_options.dart';
 import 'package:ki_mit_talal/utils/theme/theme.dart';
 import 'package:ki_mit_talal/views/home.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
-  Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+  Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform).then((value) => Get.put(AuthenticationFb()));
   runApp(const MyApp());
 }
 
