@@ -53,7 +53,7 @@ class _HomePageState extends State<HomePage>{
           return RecipeCard(
             title: recipes[index].title,
             cookTime: "30 min",
-            rating: "Kurvajo",
+            rating: "8/10",
             thumbnailUrl: recipes[index].image);}
     ));
   }

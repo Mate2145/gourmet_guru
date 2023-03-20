@@ -39,3 +39,8 @@ const String ggLoginSubtitle = "Sign in to discover, save and cook with ease";
 const String ggForgotPasswordTitle = "Reset Your Password";
 const String ggForgotPasswordSubTitle =
     "Enter your email to receive password reset instructions";
+
+/* -- DashBoard Strings -- */
+
+const ggAppTitle = "GourmetGuru";
+const dashBoardTitle1 = "Explore Cultures";

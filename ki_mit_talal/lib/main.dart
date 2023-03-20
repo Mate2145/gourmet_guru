@@ -1,3 +1,4 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:ki_mit_talal/features/authentication/screens/login/login_screen.dart';
@@ -5,10 +6,14 @@ import 'package:ki_mit_talal/features/authentication/screens/on_boarding/on_boar
 import 'package:ki_mit_talal/features/authentication/screens/on_boarding/on_boarding_screen.dart';
 import 'package:ki_mit_talal/features/authentication/screens/sign_up/sign_up_screen.dart';
 import 'package:ki_mit_talal/features/authentication/screens/welcome/welcome_screen.dart';
+import 'package:ki_mit_talal/features/core/screens/dashboard/dashboard.dart';
+import 'package:ki_mit_talal/firebase_options.dart';
 import 'package:ki_mit_talal/utils/theme/theme.dart';
 import 'package:ki_mit_talal/views/home.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   runApp(const MyApp());
 }
 
@@ -24,8 +29,7 @@ class MyApp extends StatelessWidget {
       themeMode: ThemeMode.system,
       defaultTransition: Transition.downToUp,
       transitionDuration: const Duration(milliseconds: 500),
-      home: OnBoardingScreen(),
+      home: DashBoard(),
     );
   }
-
 }

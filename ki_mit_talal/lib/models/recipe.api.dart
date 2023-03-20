@@ -9,7 +9,7 @@ class RecipeAPI {
         "query":"pasta",
         "maxFat":"25",
         "number":"2",
-        "apiKey": "83b3c3a9c5544e2f8be3f4c3dd3dff21"
+        "apiKey": "83b3c3a9c5544e2f8be3f4c3dd3dff23"
       });
 
       print(uri);
