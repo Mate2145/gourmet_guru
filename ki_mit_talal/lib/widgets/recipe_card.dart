@@ -2,20 +2,16 @@ import 'package:flutter/material.dart';
 
 class RecipeCard extends StatelessWidget {
   final String title;
-  final String rating;
-  final String cookTime;
   final String thumbnailUrl;
   RecipeCard({
     required this.title,
-    required this.cookTime,
-    required this.rating,
     required this.thumbnailUrl,
   });
   @override
   Widget build(BuildContext context) {
     return Container(
       margin: EdgeInsets.symmetric(horizontal: 22, vertical: 10),
-      width: MediaQuery.of(context).size.width,
+      width: 250,
       height: 180,
       decoration: BoxDecoration(
         color: Colors.black,
@@ -77,7 +73,7 @@ class RecipeCard extends StatelessWidget {
                         size: 18,
                       ),
                       SizedBox(width: 7),
-                      Text(rating),
+                      Text(""),
                     ],
                   ),
                 ),
@@ -96,7 +92,7 @@ class RecipeCard extends StatelessWidget {
                         size: 18,
                       ),
                       SizedBox(width: 7),
-                      Text(cookTime),
+                      Text(""),
                     ],
                   ),
                 )

@@ -3,6 +3,7 @@ import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:get/get.dart';
 import 'package:ki_mit_talal/features/authentication/screens/welcome/welcome_screen.dart';
+import 'package:ki_mit_talal/features/core/maindisplay/maindisplay.dart';
 import 'package:ki_mit_talal/features/core/screens/dashboard/dashboard.dart';
 import 'package:ki_mit_talal/firebase/exceptions/sign_up_email_password_exception.dart';
 
@@ -22,7 +23,7 @@ class AuthenticationFb extends GetxController {
   _setIniitialScreen(User? user) {
     user == null
         ? Get.offAll(() => const WelcomeScreen())
-        : Get.offAll(() => const DashBoard());
+        : Get.offAll(() => MainDisplay());
   }
 
   Future<void> createUser(String email, String pw) async {

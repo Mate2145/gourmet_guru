@@ -20,7 +20,6 @@ class _HomePageState extends State<HomePage>{
   void initState() {
     // TODO: implement initState
     super.initState();
-
     getRecipes();
   }
 
@@ -45,15 +44,13 @@ class _HomePageState extends State<HomePage>{
         ],),
       ),
       body: isloading 
-      ? Center(child: ElevatedButton(onPressed: () {},child: Text("ElevatedButton"),))
+      ? Center(child: CircularProgressIndicator(),)
        : ListView.builder(
         itemCount:  recipes.length,
         itemBuilder: (context, index)
         {
           return RecipeCard(
             title: recipes[index].title,
-            cookTime: "30 min",
-            rating: "8/10",
             thumbnailUrl: recipes[index].image);}
     ));
   }
