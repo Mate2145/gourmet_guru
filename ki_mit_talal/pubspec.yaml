@@ -46,6 +46,7 @@ dependencies:
   firebase_core: ^2.8.0
   firebase_auth: ^4.3.0
   flutter_html: ^3.0.0-alpha.6
+  line_awesome_flutter: ^2.0.0
 
 dev_dependencies:
   flutter_test:
