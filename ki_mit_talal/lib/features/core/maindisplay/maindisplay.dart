@@ -6,6 +6,7 @@ import 'package:ki_mit_talal/constants/colors.dart';
 import 'package:ki_mit_talal/constants/sizes.dart';
 import 'package:ki_mit_talal/constants/texts.dart';
 import 'package:ki_mit_talal/features/core/controllers/maindisplay_controller.dart';
+import 'package:ki_mit_talal/features/core/screens/add_recipe.dart/addRecipe.dart';
 import 'package:ki_mit_talal/utils/theme/theme.dart';
 
 import '../screens/calculator/calculator.dart';
@@ -23,7 +24,7 @@ class MainDisplay extends StatelessWidget {
   Widget build(BuildContext context) {
     //Variables
     final txtTheme = Theme.of(context).textTheme;
-    final screen = [DashBoard(), Search(), Calculator(), Profile()];
+    final screen = [DashBoard(), Search(), AddRecipe(), Profile()];
 
     return Scaffold(
       body: Obx(() => IndexedStack(
@@ -52,9 +53,9 @@ class MainDisplay extends StatelessWidget {
                   selectedIcon: Icon(Icons.search),
                   label: "Search"),
               NavigationDestination(
-                  icon: Icon(Icons.restaurant_outlined),
-                  selectedIcon: Icon(Icons.restaurant),
-                  label: "Calculator"),
+                  icon: Icon(Icons.add),
+                  selectedIcon: Icon(Icons.add_outlined),
+                  label: "Add"),
               NavigationDestination(
                   icon: Icon(Icons.settings_outlined),
                   selectedIcon: Icon(Icons.settings),

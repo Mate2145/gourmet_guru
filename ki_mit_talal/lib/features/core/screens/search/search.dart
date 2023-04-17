@@ -49,10 +49,12 @@ class Search extends StatelessWidget {
       body: GetBuilder<RecipeSearchController>(
         init: RecipeSearchController(),
         builder: (controller) {
+          final searchKey = GlobalKey<FormState>();
+
           return SingleChildScrollView(
             child: Form(
               autovalidateMode: AutovalidateMode.onUserInteraction,
-              key: controller.formKey,
+              key: searchKey,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
@@ -473,11 +475,12 @@ class Search extends StatelessWidget {
                     width: 260,
                     child: ElevatedButton(
                       onPressed: () async {
-                        if (controller.checkSearch()) {
+                        if(searchKey.currentState!.validate()){
                           var filter = controller.createFilterfromForm();
                           var resultList = await RecipeAPI.getRecipebyFilter(filter!);
                           Get.to(SearchResult(searchList: resultList));
                         }
+                        searchKey.currentState!.save();
                       },
                       child: Text("SEARCH"),
                     ),

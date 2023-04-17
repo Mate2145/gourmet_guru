@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:ki_mit_talal/features/authentication/screens/sign_up/sign_up_screen.dart';
 
 import '../../../../constants/colors.dart';
 import '../../../../constants/image_strings.dart';
@@ -33,7 +35,9 @@ class LoginFooterWidget extends StatelessWidget {
           height: 10,
         ),
         TextButton(
-          onPressed: () {},
+          onPressed: () {
+            Get.to(const SignUpScreen());
+          },
           child: Text.rich(
             TextSpan(
               text: ALREADYHAVEACCOUNT,

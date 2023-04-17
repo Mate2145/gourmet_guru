@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:ki_mit_talal/features/authentication/controllers/sign_up_controller.dart';
+import 'package:ki_mit_talal/features/authentication/models/user_model.dart';
 
 import '../../../../constants/sizes.dart';
 import '../../../../constants/texts.dart';
@@ -13,12 +14,12 @@ class SignUpFormWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final controller = Get.put(SignUpController());
-    final formKey = GlobalKey<FormState>();
+    final signupkey = GlobalKey<FormState>();
 
     return Container(
       padding: EdgeInsets.symmetric(vertical: ggFormHeight - 10),
       child: Form(
-          key: formKey,
+          key: signupkey,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -56,9 +57,10 @@ class SignUpFormWidget extends StatelessWidget {
                 width: double.infinity,
                 child: ElevatedButton(
                     onPressed: () {
-                      if (formKey.currentState!.validate()) {
+                      if (signupkey.currentState!.validate()) {
+                        final user = UserModel(email: controller.email.text.trim(),fullName: controller.fullName.text.trim());
                         SignUpController.instance.registerUser(
-                            controller.email.text.trim(),
+                            user,
                             controller.password.text.trim());
                       }
                     },

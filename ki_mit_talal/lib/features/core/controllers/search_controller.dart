@@ -11,7 +11,7 @@ import 'package:ki_mit_talal/features/core/models/mealtype.dart';
 class RecipeSearchController extends GetxController {
   //RxList<Recipe> _recipes = RxList<Recipe>([]);
   //List<Filter> _selectedFilters = [];
-  final formKey = GlobalKey<FormState>();
+  final searchkey = GlobalKey<FormState>();
   String? _searchText;
   Rx<Cuisine> selectedCuisine = Cuisine.All.obs;
   Rx<Diet> selectedDiet = Diet.All.obs;
@@ -62,11 +62,11 @@ class RecipeSearchController extends GetxController {
   }
 
   bool checkSearch() {
-    final isValid = formKey.currentState!.validate();
+    final isValid = searchkey.currentState!.validate();
     if (!isValid) {
       return false;
     }
-    formKey.currentState!.save();
+    searchkey.currentState!.save();
     return true;
   }
 
@@ -95,43 +95,43 @@ class RecipeSearchController extends GetxController {
     }
     //Cooktime
     if (cookTime.value > 0) {
-      filter.maxReadyTime = cookTime.value.toInt();
+      filter.maxReadyTime = cookTime.value.ceil().toString();
     }
     //Min Calories
     if (minCalories.value > 0 && minCalories.value < maxCalories.value) {
-      filter.minCalories = minCalories.value.toInt();
+      filter.minCalories = minCalories.value.ceil().toString();
     }
     //Max Calories
     if (maxCalories.value > 0 && maxCalories.value > minCalories.value) {
-      filter.maxCalories = maxCalories.value.toInt();
+      filter.maxCalories = maxCalories.value.ceil().toString();
     }
     //Min Protein
     if (minProtein.value > 0 && minProtein.value < maxProtein.value) {
-      filter.minProtein = minProtein.value.toInt();
+      filter.minProtein = minProtein.value.ceil().toString();
     }
     //Max protein
     if (maxProtein.value > 0 && maxProtein.value > minProtein.value) {
-      filter.maxProtein = maxProtein.value.toInt();
+      filter.maxProtein = maxProtein.value.ceil().toString();
     }
 
     //Min carbs
     if (minCarbs.value > 0 && minCarbs.value < maxCarbs.value) {
-      filter.minCarbs = minCarbs.value.toInt();
+      filter.minCarbs = minCarbs.value.ceil().toString();
     }
 
     //Max carbs
     if (maxCarbs.value > 0 && maxCarbs.value > minCarbs.value) {
-      filter.maxCarbs = maxCarbs.value.toInt();
+      filter.maxCarbs = maxCarbs.value.ceil().toString();
     }
 
     //Min fat
     if (minFat.value > 0 && minFat.value < maxFat.value) {
-      filter.minFat = minFat.value.toInt();
+      filter.minFat = minFat.value.ceil().toString();
     }
 
     //Max fat
     if (maxFat.value > 0 && maxFat.value > minFat.value) {
-      filter.maxFat = maxFat.value.toInt();
+      filter.maxFat = maxFat.value.ceil().toString();
     }
 
     return filter;

@@ -6,6 +6,7 @@ import 'package:ki_mit_talal/constants/image_strings.dart';
 import 'package:ki_mit_talal/constants/sizes.dart';
 import 'package:ki_mit_talal/constants/texts.dart';
 import 'package:ki_mit_talal/features/core/screens/profile/edit_profile.dart';
+import 'package:ki_mit_talal/firebase/auth/auth.dart';
 import 'package:ki_mit_talal/utils/theme/theme.dart';
 import 'package:line_awesome_flutter/line_awesome_flutter.dart';
 
@@ -129,7 +130,9 @@ class Profile extends StatelessWidget {
                 ProfileTile(
                   title: "Logout",
                   icon: LineAwesomeIcons.alternate_sign_out,
-                  onPress: () {},
+                  onPress: () {
+                    AuthenticationFb.instance.logout();
+                  },
                   endIcon: false,
                   textColor: Colors.red,
                 ),

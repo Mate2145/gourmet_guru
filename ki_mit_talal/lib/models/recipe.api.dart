@@ -55,6 +55,10 @@ class RecipeAPI {
 
   static Map<String, dynamic>? getParametersbyFilter(Filter? filter) {
     Map<String, dynamic>? parameters = {};
+
+    parameters['query'] = filter!.query;
+
+    parameters['number'] = "5";
     //Cuisine
     if (filter?.cuisine?.isNotEmpty == true) {
       parameters['cuisine'] = filter!.cuisine;

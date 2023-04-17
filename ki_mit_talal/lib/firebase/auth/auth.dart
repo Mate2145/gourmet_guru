@@ -29,15 +29,25 @@ class AuthenticationFb extends GetxController {
   Future<void> createUser(String email, String pw) async {
     try {
       await auth.createUserWithEmailAndPassword(email: email, password: pw);
+      firebaseUser.value != null
+          ? Get.offAll(() => MainDisplay())
+          : Get.to(() => const WelcomeScreen());
     } on FirebaseAuthException catch (e) {
-    } catch (_) {}
+      final ex = SignupWithEmailAndPasswordException.code(e.code);
+      print('FIREBASE AUTH EXCEPTION - ${ex.message}');
+      throw ex;
+    } catch (_) {
+      final ex = SignupWithEmailAndPasswordException();
+      print('EXCEPTION - ${ex.message}');
+      throw ex;
+    }
   }
 
   Future<void> loginUser(String email, String pw) async {
     try {
       await auth.signInWithEmailAndPassword(email: email, password: pw);
       firebaseUser.value != null
-          ? Get.offAll(() => const DashBoard())
+          ? Get.offAll(() => MainDisplay())
           : Get.to(() => const WelcomeScreen());
     } on FirebaseAuthException catch (e) {
       final ex = SignupWithEmailAndPasswordException.code(e.code);

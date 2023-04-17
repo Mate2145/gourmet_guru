@@ -6,18 +6,18 @@ class Filter {
   String? equipment;
   String? type;
   String? mealType;
-  int? recipeBoxId;
-  int? maxReadyTime;
-  int? minCarbs;
-  int? maxCarbs;
-  int? minProtein;
-  int? maxProtein;
-  int? minCalories;
-  int? maxCalories;
-  int? minFat;
-  int? maxFat;
-  int? offset;
-  int? number;
+  String? recipeBoxId;
+  String? maxReadyTime;
+  String? minCarbs;
+  String? maxCarbs;
+  String? minProtein;
+  String? maxProtein;
+  String? minCalories;
+  String? maxCalories;
+  String? minFat;
+  String? maxFat;
+  String? offset;
+  String? number;
 
   Filter.onlyQuery({required this.query});
 
