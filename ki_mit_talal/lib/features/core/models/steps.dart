@@ -9,7 +9,7 @@ class Steps {
   List<Equipment>? equipment;
   List<IngredientinInstruction>? ingredients;
 
-  Steps({required this.number, required this.step, this.length, required  this.equipment, required this.ingredients});
+  Steps({required this.number, required this.step,this.length,this.equipment,this.ingredients});
 
   factory Steps.fromJson(Map<String, dynamic> json) {
     final List<Equipment> equipment = json['equipment'] != null
