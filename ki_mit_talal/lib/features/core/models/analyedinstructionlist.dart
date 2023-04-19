@@ -14,4 +14,10 @@ class AnalyzedInstructionsList {
 
     return AnalyzedInstructionsList(instructions: instructionsList);
   }
+
+    Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = Map<String, dynamic>();
+    data['analyzedInstructions'] = this.instructions.map((instruction) => instruction.toJson()).toList();
+    return data;
+  }
 }

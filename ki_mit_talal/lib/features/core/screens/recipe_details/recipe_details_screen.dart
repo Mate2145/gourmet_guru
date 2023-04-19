@@ -75,7 +75,7 @@ class RecipeDetailScreen extends StatelessWidget {
                             ),
                             child: Icon(Icons.favorite),
                           ),
-                          Text(
+                          if(this.recipe.aggregateLikes != null) Text(
                             this.recipe.aggregateLikes.toString(),
                             style: Theme.of(context).textTheme.titleSmall,
                           ),
@@ -93,11 +93,11 @@ class RecipeDetailScreen extends StatelessWidget {
                   const SizedBox(height: 8.0),
                   Html(data: this.recipe.summary),
                   const SizedBox(height: 16.0),
-                  Text(
+                  if(this.recipe.vegetarian != null) Text(
                     'Scores',
                     style: Theme.of(context).textTheme.titleLarge,
                   ),
-                  const SizedBox(height: 8.0),
+                  if(this.recipe.vegetarian != null) const SizedBox(height: 8.0),
                   ScoreWidget(
                     weightWatcherSmartPoints: recipe.weightWatcherSmartPoints,
                     healthScore: recipe.healthScore,
@@ -191,158 +191,8 @@ class AnalyedInstructionWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (MapStorage.isContainsID(recipe.id)) {
-      final analyzedInstructions =
-          MapStorage.getAnalyzedInstructions(recipe.id)!;
-      return ListView.builder(
-        shrinkWrap: true,
-        physics: const NeverScrollableScrollPhysics(),
-        itemCount: analyzedInstructions.instructions.length,
-        itemBuilder: (context, index) {
-          return Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              if (analyzedInstructions.instructions[index].name != null &&
-                  analyzedInstructions.instructions[index].name.isNotEmpty)
-                Text(
-                  analyzedInstructions.instructions[index].name,
-                  style: Theme.of(context).textTheme.headline4,
-                ),
-              const SizedBox(height: 10.0),
-              ListView.builder(
-                shrinkWrap: true,
-                physics: const NeverScrollableScrollPhysics(),
-                itemCount:
-                    analyzedInstructions.instructions[index].steps.length,
-                itemBuilder: (context, stepindex) {
-                  final step =
-                      analyzedInstructions.instructions[index].steps[stepindex];
-                  return Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Container(
-                        height: 24.0,
-                        width: 24.0,
-                        alignment: Alignment.center,
-                        margin: const EdgeInsets.only(right: 16.0),
-                        decoration: const BoxDecoration(
-                          shape: BoxShape.circle,
-                          color: ggDark,
-                        ),
-                        child: Text(
-                          '${stepindex + 1}',
-                          style: Theme.of(context)
-                              .textTheme
-                              .bodySmall!
-                              .copyWith(
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.w700),
-                        ),
-                      ),
-                      Expanded(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              step.step,
-                              style: Theme.of(context).textTheme.bodyMedium,
-                            ),
-                            if (step.length != null)
-                              Padding(
-                                padding: const EdgeInsets.only(top: 8.0),
-                                child: Text(
-                                  'Length: ' +
-                                      step.length!.number.toString() +
-                                      " " +
-                                      step.length!.unit,
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .bodyText1!
-                                      .copyWith(
-                                          color: Colors.black,
-                                          fontWeight: FontWeight.w700),
-                                ),
-                              ),
-                            if (step.ingredients != null)
-                              Padding(
-                                padding: const EdgeInsets.only(top: 8.0),
-                                child: Text(
-                                  'Ingredients:',
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .bodyText1!
-                                      .copyWith(
-                                          color: Colors.black,
-                                          fontWeight: FontWeight.w700),
-                                ),
-                              ),
-                            for (final ingredient in step.ingredients ?? [])
-                              Padding(
-                                padding: const EdgeInsets.only(top: 4.0),
-                                child: Text(
-                                  '- ${ingredient.name}',
-                                  style: Theme.of(context).textTheme.bodyText2,
-                                ),
-                              ),
-                            ////////////////////////////////////
-                            if (step.equipment != null)
-                              Padding(
-                                padding: const EdgeInsets.only(top: 8.0),
-                                child: Text(
-                                  'Equipment:',
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .bodyText1!
-                                      .copyWith(
-                                          color: Colors.black,
-                                          fontWeight: FontWeight.w700),
-                                ),
-                              ),
-                            for (final equipment in step.equipment ?? [])
-                              Padding(
-                                padding: const EdgeInsets.only(top: 4.0),
-                                child: Text(
-                                  '- ${equipment.name}',
-                                  style: Theme.of(context).textTheme.bodyText2,
-                                ),
-                              ),
-                            for (final equipment in step.equipment ?? [])
-                              if (equipment.temperature != null)
-                                Padding(
-                                  padding: const EdgeInsets.only(top: 4.0),
-                                  child: Text(
-                                    'Temperature: ' +
-                                        equipment.temperature.number.ceil()
-                                            .toString() + " " +
-                                        equipment.temperature.unit,
-                                    style:
-                                        Theme.of(context).textTheme.bodyText1,
-                                  ),
-                                ),
-                            const SizedBox(height: 30.0),
-                          ],
-                        ),
-                      ),
-                    ],
-                  );
-                },
-              ),
-            ],
-          );
-        },
-      );
-    } else {
-      return FutureBuilder<AnalyzedInstructionsList>(
-        future: RecipeAPI.getAnalyedInstructionsListbyID(recipe.id),
-        builder: (context, snapshot) {
-          if (snapshot.connectionState == ConnectionState.waiting) {
-            return CircularProgressIndicator();
-          } else if (snapshot.hasError) {
-            return Text('Error: ${snapshot.error}');
-          } else {
-            final analyzedInstructions =
-                snapshot.data as AnalyzedInstructionsList;
-            MapStorage.addAnalyzedInstructions(recipe.id, analyzedInstructions);
+        final analyzedInstructions = new AnalyzedInstructionsList(instructions: recipe.instructionList!);
+        MapStorage.addAnalyzedInstructions(recipe.id,analyzedInstructions);
             return ListView.builder(
               shrinkWrap: true,
               physics: const NeverScrollableScrollPhysics(),
@@ -488,10 +338,6 @@ class AnalyedInstructionWidget extends StatelessWidget {
                   ],
                 );
               },
-            );
-          }
-        },
-      );
+            );     
     }
   }
-}

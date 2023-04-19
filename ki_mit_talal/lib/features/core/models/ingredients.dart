@@ -44,4 +44,21 @@ class Ingredients {
       unit: json['unit'] ?? "",
     );
   }
+
+  factory Ingredients.fromSnapshot(Map<String, dynamic> json) {
+    return Ingredients(
+      amount: json['amount'] ?? 0,
+      name: json['name'] ?? "",
+      unit: json['unit'] ?? "",
+    );
+  }
+
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = Map<String, dynamic>();
+    data['amount'] = this.amount;
+    data['name'] = this.name;
+    data['unit'] = this.unit;
+    return data;
+  }
 }

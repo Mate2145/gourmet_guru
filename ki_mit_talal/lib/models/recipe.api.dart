@@ -133,7 +133,10 @@ class RecipeAPI {
     if (response.statusCode == 200) {
       print("FetchRecipe OK");
       final json = jsonDecode(response.body);
-      return RecipeDetailed.fromJson(json);
+      RecipeDetailed recipe = RecipeDetailed.fromJson(json);
+      AnalyzedInstructionsList list = await getAnalyedInstructionsListbyID(recipeId);
+      recipe.instructionList = list.instructions;
+      return recipe;
     } else {
       throw Exception('Failed to load recipe details: ${response.statusCode}');
     }

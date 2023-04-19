@@ -15,7 +15,7 @@ import 'package:ki_mit_talal/views/home.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
-  //Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform).then((value) => Get.put(AuthenticationFb()));
+  Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform).then((value) => Get.put(AuthenticationFb()));
   runApp(const MyApp());
 }
 

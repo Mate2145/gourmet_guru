@@ -34,6 +34,20 @@ class Steps {
       ingredients: json['ingredients'] != null ? List.from(json['ingredients']).map<IngredientinInstruction>((i) => IngredientinInstruction.fromJson(i)).toList(): []
     );
   }
+
+
+  factory Steps.fromSnapshot(Map<String, dynamic> json) {
+    return Steps(
+        number: int.parse(json['number']) ?? 0,
+        step: json['step'] ?? "");
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = Map<String, dynamic>();
+    data['number'] = this.number.toString();
+    data['step'] = this.step;
+    return data;
+  }  
 }
 
 

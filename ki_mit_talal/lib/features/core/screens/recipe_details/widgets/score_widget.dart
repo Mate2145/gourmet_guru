@@ -2,18 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:ki_mit_talal/features/core/screens/recipe_details/widgets/score_circle.dart';
 
 class ScoreWidget extends StatelessWidget {
-  final int weightWatcherSmartPoints;
-  final num healthScore;
-  final num spoonacularScore;
-  final bool glutenFree;
-  final bool ketogenic;
-  final bool lowFodmap;
-  final bool sustainable;
-  final bool vegan;
-  final bool vegetarian;
-  final bool veryHealthy;
-  final bool veryPopular;
-  final bool whole30;
+  final int? weightWatcherSmartPoints;
+  final num? healthScore;
+  final num? spoonacularScore;
+  final bool? glutenFree;
+  final bool? ketogenic;
+  final bool? lowFodmap;
+  final bool? sustainable;
+  final bool? vegan;
+  final bool? vegetarian;
+  final bool? veryHealthy;
+  final bool? veryPopular;
+  final bool? whole30;
 
   const ScoreWidget({
     Key? key,
@@ -35,78 +35,89 @@ class ScoreWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-          ScoreCircle(
+          if(this.weightWatcherSmartPoints != null) ScoreCircle(
           label: 'WWSP',
           value: weightWatcherSmartPoints.toString(),
           color: Colors.blue,
         ),
         const SizedBox(width: 20),
-        ScoreCircle(
+        if(this.healthScore != null && veryHealthy != null) ScoreCircle(
           label: 'HEALTH',
-          value: healthScore.toStringAsFixed(0),
-          color: veryHealthy ? Colors.green : Colors.red,
+          value: healthScore!.toStringAsFixed(0),
+          color: veryHealthy! ? Colors.green : Colors.red,
         ),
         const SizedBox(width: 20),
-        ScoreCircle(
+        if(this.spoonacularScore != null && this.veryPopular != null) ScoreCircle(
           label: 'SPOON',
-          value: spoonacularScore.toStringAsFixed(0),
-          color: veryPopular ? Colors.green : Colors.red,
+          value: spoonacularScore!.toStringAsFixed(0),
+          color: veryPopular! ? Colors.green : Colors.red,
         ),
         const SizedBox(width: 20),
           ],
         ),
       const SizedBox(height: 15,),
       Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          ScoreCircle(
-          label: 'GLUTEN-FREE',
-          value: "",
-          color: glutenFree ? Colors.green : Colors.red,
-        ),
-        const SizedBox(width: 20),
-        ScoreCircle(
-          label: 'KETO',
-          value: "",
-          color: ketogenic ? Colors.green : Colors.red,
-        ),
-        const SizedBox(width: 20),
-        ScoreCircle(
-          label: 'LOW FODMAP',
-          value: "",
-          color: lowFodmap ? Colors.green : Colors.red,
-        ),
-        const SizedBox(width: 20),
-        ],
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            if (glutenFree != null)
+              ScoreCircle(
+                label: 'GLUTEN-FREE',
+                value: "",
+                color: glutenFree! ? Colors.green : Colors.red,
+              ),
+            const SizedBox(width: 20),
+            if (ketogenic != null)
+              ScoreCircle(
+                label: 'KETO',
+                value: "",
+                color: ketogenic! ? Colors.green : Colors.red,
+              ),
+            const SizedBox(width: 20),
+            if (lowFodmap != null)
+              ScoreCircle(
+                label: 'LOW FODMAP',
+                value: "",
+                color: lowFodmap! ? Colors.green : Colors.red,
+              ),
+            const SizedBox(width: 20),
+          ],
       ),
       const SizedBox(height: 15,),
       Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-        const SizedBox(width: 20),
-        ScoreCircle(
-          label: 'VEGAN',
-          value: "",
-          color: vegan ? Colors.green : Colors.red,
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            const SizedBox(width: 20),
+            if (vegan != null)
+              ScoreCircle(
+                label: 'VEGAN',
+                value: "",
+                color: vegan! ? Colors.green : Colors.red,
+              ),
+            const SizedBox(width: 20),
+            if (vegetarian != null)
+              ScoreCircle(
+                label: 'VEGETARIAN',
+                value: "",
+                color: vegetarian! ? Colors.green : Colors.red,
+              ),
+            const SizedBox(width: 20),
+            if (whole30 != null)
+              ScoreCircle(
+                label: 'WHOLE30',
+                value: "",
+                color: whole30! ? Colors.green : Colors.red,
+              ),
+          ],
         ),
-        const SizedBox(width: 20),
-        ScoreCircle(
-          label: 'VEGETARIAN',
-          value: "",
-          color: vegetarian ? Colors.green : Colors.red,
-        ),
-        const SizedBox(width: 20),
-        ScoreCircle(
-          label: 'WHOLE30',
-          value: "",
-          color: whole30 ? Colors.green : Colors.red,
-        ),
-        ],
-      )
+      const SizedBox(height: 20,),
       ],
     );
   }

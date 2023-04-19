@@ -2,9 +2,10 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:ki_mit_talal/constants/colors.dart';
 
 class RecipeDetailAppBar extends StatelessWidget {
-  final String foodPicture;
+  final String? foodPicture;
 
    RecipeDetailAppBar({Key? key, required this.foodPicture}) : super(key: key);
 
@@ -18,11 +19,19 @@ class RecipeDetailAppBar extends StatelessWidget {
       elevation: 0.0,
       pinned: true,
       stretch: true,
-      flexibleSpace: FlexibleSpaceBar(
+      flexibleSpace: this.foodPicture != null ? FlexibleSpaceBar(
         background: Image.network(
-          this.foodPicture,
+          this.foodPicture!,
           fit: BoxFit.cover,
         ),
+        stretchModes: const [
+          StretchMode.blurBackground,
+          StretchMode.zoomBackground,
+        ],
+      ) : FlexibleSpaceBar(
+          background: Container(
+          color: ggPrimaryColor,
+          ),
         stretchModes: const [
           StretchMode.blurBackground,
           StretchMode.zoomBackground,
