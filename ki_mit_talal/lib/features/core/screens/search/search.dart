@@ -6,11 +6,13 @@ import 'package:get/route_manager.dart';
 import 'package:ki_mit_talal/constants/colors.dart';
 import 'package:ki_mit_talal/constants/sizes.dart';
 import 'package:ki_mit_talal/constants/texts.dart';
+import 'package:ki_mit_talal/features/core/maindisplay/maindisplay.dart';
 import 'package:ki_mit_talal/features/core/models/cuisines.dart';
 import 'package:ki_mit_talal/features/core/models/diets.dart';
 import 'package:ki_mit_talal/features/core/models/intolerances.dart';
 import 'package:ki_mit_talal/features/core/models/mealtype.dart';
 import 'package:ki_mit_talal/features/core/screens/recipe_details/widgets/searchresult.dart';
+import 'package:ki_mit_talal/features/core/screens/search/search_menu.dart';
 import 'package:ki_mit_talal/models/recipe.api.dart';
 import 'package:ki_mit_talal/utils/theme/theme.dart';
 import 'package:ki_mit_talal/views/home.dart';
@@ -29,7 +31,9 @@ class Search extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        leading: const Icon(Icons.menu, color: Colors.black),
+        leading: IconButton(onPressed: () {
+          Get.off(() => MainDisplay());
+        }, icon: Icon(Icons.arrow_back_ios)),
         title: Text(ggAppTitle, style: Theme.of(context).textTheme.headline5),
         centerTitle: true,
         elevation: 0,

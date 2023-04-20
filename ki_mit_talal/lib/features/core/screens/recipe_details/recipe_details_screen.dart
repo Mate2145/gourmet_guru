@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
+import 'package:get/instance_manager.dart';
 import 'package:ki_mit_talal/constants/colors.dart';
+import 'package:ki_mit_talal/features/core/controllers/recipe_detailed_screen_controller.dart';
 import 'package:ki_mit_talal/features/core/models/ingredients.dart';
 import 'package:ki_mit_talal/features/core/models/recipe_detail.dart';
 import 'package:ki_mit_talal/features/core/models/temperature.dart';
@@ -14,10 +17,14 @@ import 'widgets/score_widget.dart';
 class RecipeDetailScreen extends StatelessWidget {
   final RecipeDetailed recipe;
 
-  const RecipeDetailScreen({Key? key, required this.recipe}) : super(key: key);
+  RecipeDetailScreen({Key? key, required this.recipe}) : super(key: key);
+
+
 
   @override
   Widget build(BuildContext context) {
+    final controller = Get.put(RecipeDetailScreenController(recipe.id));
+    final txtTheme = Theme.of(context).textTheme;
     return Scaffold(
       body: CustomScrollView(
         slivers: <Widget>[
@@ -57,6 +64,17 @@ class RecipeDetailScreen extends StatelessWidget {
                         Text(this.recipe.readyInMinutes.toString() + " min"),
                       ],
                     ),
+                  ),
+                  const SizedBox(height: 8,),
+                  if(controller.isSaved.value)Row(
+                    children: [
+                      TextButton(onPressed: (){
+                        controller.saveRecipe(recipe.id);
+                        controller.isRecipeSaved(recipe.id);
+                        print("Saved");
+                      }, 
+                      child: Text("Save",style: txtTheme.bodyLarge),)
+                    ],
                   ),
                   const SizedBox(height: 16.0),
                   Row(

@@ -92,8 +92,12 @@ class IngredientUI extends StatelessWidget {
                     if(value == null){
                       return "You must fill this.";
                     }
-                    else if(int.parse(value) <= 0){
-                      return "The amount cant be 0";
+                    else if( value.isNotEmpty)
+                    {
+                      if(int.parse(value) <= 0){
+                          return "The amount cant be 0";
+                      }
+                      
                     }
                   },
                   onSaved: (newValue) {

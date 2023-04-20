@@ -7,6 +7,7 @@ import 'package:ki_mit_talal/constants/sizes.dart';
 import 'package:ki_mit_talal/constants/texts.dart';
 import 'package:ki_mit_talal/features/core/controllers/maindisplay_controller.dart';
 import 'package:ki_mit_talal/features/core/screens/add_recipe/addRecipe.dart';
+import 'package:ki_mit_talal/features/core/screens/search/search_menu.dart';
 import 'package:ki_mit_talal/utils/theme/theme.dart';
 
 import '../screens/calculator/calculator.dart';
@@ -24,7 +25,7 @@ class MainDisplay extends StatelessWidget {
   Widget build(BuildContext context) {
     //Variables
     final txtTheme = Theme.of(context).textTheme;
-    final screen = [DashBoard(), Search(), AddRecipe(), Profile()];
+    final screen = [DashBoard(), SearchMenu(), AddRecipe(), Profile()];
 
     return Scaffold(
       body: Obx(() => IndexedStack(

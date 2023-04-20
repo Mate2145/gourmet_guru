@@ -24,6 +24,7 @@ class AddRecipeController extends GetxController {
   var equipment =  <Equipment>[].obs;
   final namecontroller = TextEditingController();
   final summarycontroller = TextEditingController();
+  final stepsController = TextEditingController();
   Rx<IngUnit> selectedUnit = IngUnit.none.obs;
   Rx<MealType> selectedMealType = MealType.mainCourse.obs;
   Rx<double> cookTime = 0.0.obs;
@@ -115,7 +116,6 @@ class AddRecipeController extends GetxController {
   final int maxNumber = 99999;
   final Random random = Random.secure();
   
-  // Generate a random integer ID between 0 and `maxNumber`.
   final id = random.nextInt(maxNumber);
   
   return id;

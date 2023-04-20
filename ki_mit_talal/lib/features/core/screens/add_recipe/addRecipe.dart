@@ -221,14 +221,6 @@ class AddRecipe extends StatelessWidget {
                             ),
                           ])),
                   Padding(
-                    padding: const EdgeInsets.only(left: 15.0),
-                    child: Text(
-                      "Equipment",
-                      style: Theme.of(context).textTheme.headline6,
-                      textAlign: TextAlign.start,
-                    ),
-                  ),
-                  Padding(
                     padding: const EdgeInsets.only(left: 15),
                     child: Text(
                       "Summary",
@@ -258,6 +250,7 @@ class AddRecipe extends StatelessWidget {
                         onPressed: () async {
                           if(addkey.currentState!.validate()){
                             if(controller.addRecipe()){
+                              addkey.currentState!.reset();
                               //Get.snackbar("Success", "We saved your recipe",snackPosition: SnackPosition.BOTTOM,backgroundColor: Colors.green.withOpacity(0.3),colorText: Colors.green);
                             }
                           }

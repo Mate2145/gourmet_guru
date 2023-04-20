@@ -32,43 +32,66 @@ class MyRecipes extends StatelessWidget {
               builder: (context,snapshot){
                 if(snapshot.connectionState == ConnectionState.done){
                   if(snapshot.hasData){
-                    List<RecipeDetailed> recipeList = snapshot.data as List<RecipeDetailed>;
-                    return ListView.builder(
-                      shrinkWrap: true,
-                      itemCount: recipeList.length,
-                      itemBuilder: ((context, index) {
-                      return Column(
-                        children: [
-                          ListTile(
-                            iconColor: Colors.green,
-                            tileColor: Colors.green.withOpacity(0.5),
-                            leading: const Icon(Icons.restaurant_outlined),
-                            title: Text("${recipeList[index].title}"),
-                            trailing: Container(
-                              width: 48,
-                              child: Row(children: [
-                                IconButton(onPressed: () {
-                                  controller.removeRecipe(recipeList[index]);
-                                },
-                                icon: Icon(Icons.remove),
-                                splashRadius: 20,)
-                              ]),
+                    controller.recipeList.value = snapshot.data as List<RecipeDetailed>;
+                    return Obx(() => ListView.builder(
+                        shrinkWrap: true,
+                        itemCount: controller.recipeList.length,
+                        itemBuilder: ((context, index) {
+                        return Column(
+                          children: [
+                            ListTile(
+                              iconColor: Colors.green,
+                              tileColor: Colors.green.withOpacity(0.5),
+                              leading: const Icon(Icons.restaurant_outlined),
+                              title: Text("${controller.recipeList[index].title}"),
+                              trailing: Container(
+                                width: 48,
+                                child: Row(children: [
+                                  IconButton(onPressed: () {
+                                    controller.removeRecipe(controller.recipeList[index]);
+                                  },
+                                  icon: Icon(Icons.remove),
+                                  splashRadius: 20,)
+                                ]),
+                              ),
+                              onTap: () {
+                                Get.to(() => RecipeDetailScreen(recipe: controller.recipeList[index]));
+                              },
                             ),
-                            onTap: () {
-                              Get.to(() => RecipeDetailScreen(recipe: recipeList[index]));
-                            },
-                          ),
-                          const SizedBox(height: 10,),
-                        ],
-                      );
-                    }));
+                            const SizedBox(height: 10,),
+                          ],
+                        );
+                      })),
+                    );
                   }
                   else{
-                    return CircularProgressIndicator();
+                    return Container(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Text("Fetching data",style: txtTheme.headline5,textAlign: TextAlign.center,),
+                          CircularProgressIndicator(),
+                        ],
+                      ),
+                    );
+                    //return CircularProgressIndicator();
                   }
                 }
                 else{
-                  return CircularProgressIndicator();
+                  return Center(
+                    child: Container(
+                        alignment: Alignment.center,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Text("Fetching data",style: txtTheme.headline5,textAlign: TextAlign.center,),
+                            CircularProgressIndicator(),
+                          ],
+                        ),
+                      ),
+                  );
                 }
               }),
           )));
