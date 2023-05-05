@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>856129792391-06t2010en9cs8qdrr2nnqc9qdv2a2plu.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.856129792391-06t2010en9cs8qdrr2nnqc9qdv2a2plu</string>
+	<key>API_KEY</key>
+	<string>GOOGLEAPI</string>
+	<key>GCM_SENDER_ID</key>
+	<string>856129792391</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.mate.kiMitTalal</string>
+	<key>PROJECT_ID</key>
+	<string>gourmetguru-aa103</string>
+	<key>STORAGE_BUCKET</key>
+	<string>gourmetguru-aa103.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:856129792391:ios:9926b1771158b6b5ec0b22</string>
+</dict>
+</plist>
