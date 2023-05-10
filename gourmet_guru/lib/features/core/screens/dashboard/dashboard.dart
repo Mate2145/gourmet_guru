@@ -31,7 +31,7 @@ class _DashBoardState extends State<DashBoard> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    getRecipes();
+    //getRecipes();
   }
 
   Future<void> getRecipes() async {

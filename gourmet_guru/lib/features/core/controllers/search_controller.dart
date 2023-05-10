@@ -58,7 +58,6 @@ class RecipeSearchController extends GetxController {
       return false;
     }
 
-    return false;
   }
 
   bool checkSearch() {

@@ -6,6 +6,7 @@ import 'package:gourmet_guru/constants/image_strings.dart';
 import 'package:gourmet_guru/constants/sizes.dart';
 import 'package:gourmet_guru/constants/texts.dart';
 import 'package:gourmet_guru/features/core/screens/profile/edit_profile.dart';
+import 'package:gourmet_guru/features/core/screens/profile/fav_recipes.dart';
 import 'package:gourmet_guru/features/core/screens/profile/my_recipes.dart';
 import 'package:gourmet_guru/firebase/auth/auth.dart';
 import 'package:gourmet_guru/utils/theme/theme.dart';
@@ -113,7 +114,9 @@ class Profile extends StatelessWidget {
                 ProfileTile(
                   title: "Favourite Recipes",
                   icon: LineAwesomeIcons.pizza_slice,
-                  onPress: () {},
+                  onPress: () {
+                    Get.to(() => FavRecipes());
+                  },
                 ),
                 ProfileTile(
                   title: "My recipes",

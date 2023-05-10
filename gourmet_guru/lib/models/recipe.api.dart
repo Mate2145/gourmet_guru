@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:gourmet_guru/api_keys.dart';
 import 'package:gourmet_guru/features/core/models/analyedinstructionlist.dart';
 import 'package:gourmet_guru/features/core/models/analyzedInstructions.dart';
+import 'package:gourmet_guru/features/core/models/mealplan.dart';
 import 'package:gourmet_guru/models/recipe.dart';
 import 'package:http/http.dart' as http;
 
@@ -184,6 +185,7 @@ class RecipeAPI {
     Map<String, dynamic> parameters = {
       'ingredients': ingredients,
       'number': number.toString(),
+      'apiKey': RecipeAPIString,
     };
 
     var uri = Uri.https(
@@ -203,28 +205,19 @@ class RecipeAPI {
     }
   }
 
-  static Future<List<Recipe>> generateMealPlan(
-      String timeFrame, int targetCalories, String diet) async {
-    Map<String, dynamic> parameters = {
-      'timeFrame': timeFrame,
-      'targetCalories': targetCalories.toString(),
-      'diet': diet,
-    };
-
+  static Future<MealPlan?> generateMealPlan(Map<String,dynamic> parameters) async {
+    parameters['apiKey'] = RecipeAPIString;
     var uri =
         Uri.https("api.spoonacular.com", "/mealplanner/generate", parameters);
 
     print(uri);
     final response = await http.get(uri);
     if (response.statusCode == 200) {
-      Map data = jsonDecode(response.body);
-      List _temp = [];
-      for (var meal in data['meals']) {
-        _temp.add(meal);
-      }
-      return Recipe.recipesFromSnapshot(_temp);
-    } else {
-      return [];
+      final data = jsonDecode(response.body);
+      return MealPlan.fromJson(data);
+    }
+    else{
+      return null;
     }
   }
 }

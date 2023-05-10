@@ -5,7 +5,10 @@ import 'package:get/get.dart';
 import 'package:get/instance_manager.dart';
 import 'package:gourmet_guru/constants/texts.dart';
 import 'package:gourmet_guru/features/authentication/screens/on_boarding/on_boarding_screen.dart';
+import 'package:gourmet_guru/features/core/screens/search/mealplan_generator.dart';
 import 'package:gourmet_guru/features/core/screens/search/search.dart';
+import 'package:gourmet_guru/features/core/screens/search/search_by_ingredient.dart';
+import 'package:gourmet_guru/features/core/screens/search/simple_search.dart';
 
 class SearchMenu extends StatelessWidget {
   const SearchMenu({super.key});
@@ -50,7 +53,9 @@ class SearchMenu extends StatelessWidget {
             SizedBox(
               width: 260,
               child: ElevatedButton(
-                onPressed: () async {},
+                onPressed: () async {
+                  Get.to(() => SimpleSearch());
+                },
                 child: Text("Simple Search"),
               ),
             ),
@@ -64,6 +69,30 @@ class SearchMenu extends StatelessWidget {
                   Get.to(() => Search());
                 },
                 child: Text("Complex Search"),
+              ),
+            ),
+            SizedBox(
+              height: 50,
+            ),
+            SizedBox(
+              width: 260,
+              child: ElevatedButton(
+                onPressed: () async {
+                  Get.to(() => SearchByIngredients());
+                },
+                child: Text("Search by Ingredients"),
+              ),
+            ),
+            SizedBox(
+              height: 50,
+            ),
+            SizedBox(
+              width: 260,
+              child: ElevatedButton(
+                onPressed: () async {
+                  Get.to(() => MealPlanGenerator());
+                },
+                child: Text("Genereate Meal Plan"),
               ),
             ),
           ],

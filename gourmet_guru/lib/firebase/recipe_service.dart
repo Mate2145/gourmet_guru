@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:gourmet_guru/features/core/models/favrecipemodell.dart';
 import 'package:http/http.dart';
 import 'package:gourmet_guru/constants/colors.dart';
 import 'package:gourmet_guru/features/core/models/recipe_detail.dart';
@@ -51,9 +52,37 @@ class RecipeService extends GetxController {
     }
   }
 
+  Future<List<FavRecipeModell>> fetchAllFavRecipeFromLoggedInUser() async {
+    final uid = authRepo.firebaseUser.value?.uid;
+    if (uid != null) {
+      final snapshot =
+          await _db.collection("fav_recipe").where("uid", isEqualTo: uid).get();
+      final recipeList =
+          snapshot.docs.map((e) => FavRecipeModell.fromFirebaseJson(e)).toList();
+      return recipeList;
+    } else {
+      return [];
+    }
+  }
+
   Future<bool> deleteRecipewithID(int id) async {
     var recipeSnapshot =
         await _db.collection('recipe').where('id', isEqualTo: id).get();
+    if (recipeSnapshot.docs.length == 0) {
+      print('Document with id $id not found!');
+      return false;
+    } else {
+      var recipeDoc = recipeSnapshot.docs[0];
+      await recipeDoc.reference.delete();
+      print(
+          'Document with id $id and document id ${recipeDoc.id} deleted successfully!');
+      return true;
+    }
+  }
+
+    Future<bool> deleteFavRecipewithID(int id) async {
+    var recipeSnapshot =
+        await _db.collection('fav_recipe').where('recipeID', isEqualTo: id).get();
     if (recipeSnapshot.docs.length == 0) {
       print('Document with id $id not found!');
       return false;
