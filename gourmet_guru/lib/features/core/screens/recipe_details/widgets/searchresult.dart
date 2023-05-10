@@ -57,7 +57,7 @@ class SearchResult extends StatelessWidget {
                                   builder: (context, snapshot) {
                                     if (snapshot.hasData) {
                                       final recipeDetails =
-                                          snapshot.data as RecipeDetailed;
+                                          snapshot.data as RecipeDetails;
                                       MapStorage.addRecipeDetails(
                                           recipeId, recipeDetails);
                                       return RecipeDetailScreen(

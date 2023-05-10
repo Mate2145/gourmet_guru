@@ -85,7 +85,7 @@ class AddRecipeController extends GetxController {
           colorText: Colors.red);
       return false;
     }
-    final detailedRecipe = new RecipeDetailed(
+    final detailedRecipe = new RecipeDetails(
         id: id,
         title: this.recipeName.value,
         summary: this.summary.value,

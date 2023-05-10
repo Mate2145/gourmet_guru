@@ -5,7 +5,7 @@ import 'package:gourmet_guru/features/core/models/analyzedInstructions.dart';
 import 'package:gourmet_guru/features/core/models/ingredients.dart';
 import 'package:gourmet_guru/features/core/screens/recipe_details/recipe_details_screen.dart';
 
-class RecipeDetailed {
+class RecipeDetails {
   final int id;
   final String title;
   String? uid;
@@ -32,7 +32,7 @@ class RecipeDetailed {
   final String addRecipedishType;
   final List<Ingredients> extendedIngredients;
 
-  RecipeDetailed({
+  RecipeDetails({
     required this.id,
     required this.title,
     required this.summary,
@@ -60,8 +60,8 @@ class RecipeDetailed {
     this.uid,
   });
 
-  factory RecipeDetailed.fromJson(Map<String, dynamic> json) {
-    return RecipeDetailed(
+  factory RecipeDetails.fromJson(Map<String, dynamic> json) {
+    return RecipeDetails(
       id: json['id'],
       summary: json['summary'],
       title: json['title'],
@@ -91,10 +91,10 @@ class RecipeDetailed {
     );
   }
 
-  factory RecipeDetailed.fromFirebaseJson(
+  factory RecipeDetails.fromFirebaseJson(
       DocumentSnapshot<Map<String, dynamic>> data) {
     final json = data.data()!;
-    return RecipeDetailed(
+    return RecipeDetails(
       id: json['id'],
       summary: json['summary'],
       uid: json['uid'],

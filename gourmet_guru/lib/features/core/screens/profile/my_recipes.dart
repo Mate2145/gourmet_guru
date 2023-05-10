@@ -27,13 +27,13 @@ class MyRecipes extends StatelessWidget {
         body: SingleChildScrollView(
             child: Container(
           padding: const EdgeInsets.all(ggDefaultSize),
-          child: FutureBuilder<List<RecipeDetailed>>(
+          child: FutureBuilder<List<RecipeDetails>>(
               future: controller.getRecipes(),
               builder: (context, snapshot) {
                 if (snapshot.connectionState == ConnectionState.done) {
                   if (snapshot.hasData) {
                     controller.recipeList.value =
-                        snapshot.data as List<RecipeDetailed>;
+                        snapshot.data as List<RecipeDetails>;
                     return Obx(
                       () => ListView.builder(
                           shrinkWrap: true,

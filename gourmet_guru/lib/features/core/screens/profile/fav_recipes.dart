@@ -91,7 +91,7 @@ class FavRecipes extends StatelessWidget {
                                           if (snapshot.hasData) {
                                             // Recipe details are available, display the recipe detail screen
                                             final recipeDetails =
-                                                snapshot.data as RecipeDetailed;
+                                                snapshot.data as RecipeDetails;
                                             MapStorage.addRecipeDetails(
                                                 recipeId, recipeDetails);
                                             return RecipeDetailScreen(

@@ -8,7 +8,7 @@ class MyRecipeController extends GetxController {
   static MyRecipeController get instance => Get.find();
 
   final RecipeService service = Get.put(RecipeService());
-  RxList<RecipeDetailed> recipeList = RxList<RecipeDetailed>([]);
+  RxList<RecipeDetails> recipeList = RxList<RecipeDetails>([]);
 
   getRecipes() {
     return service.fetchAllRecipeFromLoggedInUser();
@@ -21,7 +21,7 @@ class MyRecipeController extends GetxController {
     }
   }
 
-  void removeRecipe(RecipeDetailed recipe) async {
+  void removeRecipe(RecipeDetails recipe) async {
     if (await service.deleteRecipewithID(recipe.id)) {
       Get.snackbar("Delete", "Delete sucess",
           snackPosition: SnackPosition.BOTTOM,

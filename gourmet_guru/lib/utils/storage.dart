@@ -4,14 +4,14 @@ import '../features/core/models/recipe_detail.dart';
 
 class MapStorage {
   static final Map<int, AnalyzedInstructionsList> _analyzedInstructionsMap = {};
-  static final Map<int, RecipeDetailed> recipeDetails = {};
+  static final Map<int, RecipeDetails> recipeDetails = {};
 
   static void addAnalyzedInstructions(
       int recipeId, AnalyzedInstructionsList analyzedInstructions) {
     _analyzedInstructionsMap[recipeId] = analyzedInstructions;
   }
 
-  static void addRecipeDetails(int recipeId, RecipeDetailed recipe) {
+  static void addRecipeDetails(int recipeId, RecipeDetails recipe) {
     recipeDetails[recipeId] = recipe;
   }
 
@@ -19,7 +19,7 @@ class MapStorage {
     return _analyzedInstructionsMap[recipeId];
   }
 
-  static RecipeDetailed? getRecipeDetails(int recipeId) {
+  static RecipeDetails? getRecipeDetails(int recipeId) {
     return recipeDetails[recipeId];
   }
 

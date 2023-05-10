@@ -15,7 +15,7 @@ import '../../models/analyzedInstructions.dart';
 import 'widgets/score_widget.dart';
 
 class RecipeDetailScreen extends StatelessWidget {
-  final RecipeDetailed recipe;
+  final RecipeDetails recipe;
 
   RecipeDetailScreen({Key? key, required this.recipe}) : super(key: key);
 
@@ -209,7 +209,7 @@ class AnalyedInstructionWidget extends StatelessWidget {
     required this.recipe,
   }) : super(key: key);
 
-  final RecipeDetailed recipe;
+  final RecipeDetails recipe;
   Map<int, AnalyzedInstructions> AnalyzedInstructionsMap = {};
 
   @override

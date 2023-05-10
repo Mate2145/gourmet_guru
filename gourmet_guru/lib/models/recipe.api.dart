@@ -125,7 +125,7 @@ class RecipeAPI {
     return parameters.length > 0 ? parameters : null;
   }
 
-  static Future<RecipeDetailed> fetchRecipeDetails(int recipeId) async {
+  static Future<RecipeDetails> fetchRecipeDetails(int recipeId) async {
     final apiUrl = 'https://api.spoonacular.com/recipes/$recipeId/information';
 
     final response =
@@ -134,7 +134,7 @@ class RecipeAPI {
     if (response.statusCode == 200) {
       print("FetchRecipe OK");
       final json = jsonDecode(response.body);
-      RecipeDetailed recipe = RecipeDetailed.fromJson(json);
+      RecipeDetails recipe = RecipeDetails.fromJson(json);
       AnalyzedInstructionsList list =
           await getAnalyedInstructionsListbyID(recipeId);
       recipe.instructionList = list.instructions;

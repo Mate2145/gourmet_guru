@@ -25,7 +25,7 @@ class DashBoard extends StatefulWidget {
 class _DashBoardState extends State<DashBoard> {
   late List<Recipe> recipes;
   bool isloading = true;
-  Map<int, RecipeDetailed> recipeDetailsMap = {};
+  Map<int, RecipeDetails> recipeDetailsMap = {};
 
   @override
   void initState() {
@@ -104,73 +104,89 @@ class _DashBoardState extends State<DashBoard> {
               "Chicken",
               style: txtTheme.headline6,
             ),
-            Container(
-              height: 200,
-              child: isloading
-                  ? Center(
-                      child: CircularProgressIndicator(),
-                    )
-                  : ListView.builder(
-                      scrollDirection: Axis.horizontal,
-                      itemCount: recipes.length,
-                      itemBuilder: (context, index) {
-                        return GestureDetector(
-                          onTap: () async {
-                            final recipeId = recipes[index].id;
-                            if (MapStorage.isContainsRecipeDetailbyID(
-                                recipeId)) {
-                              // Recipe details are already available, display the recipe detail screen
-                              final recipeDetails =
-                                  MapStorage.getRecipeDetails(recipeId)!;
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: ((context) => RecipeDetailScreen(
-                                      recipe: recipeDetails)),
-                                ),
-                              );
-                            } else {
-                              // Recipe details are not yet available, load them from the API
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: ((context) => FutureBuilder(
-                                        future: RecipeAPI.fetchRecipeDetails(
-                                            recipeId),
-                                        builder: (context, snapshot) {
-                                          if (snapshot.hasData) {
-                                            // Recipe details are available, display the recipe detail screen
-                                            final recipeDetails =
-                                                snapshot.data as RecipeDetailed;
-                                            MapStorage.addRecipeDetails(
-                                                recipeId, recipeDetails);
-                                            return RecipeDetailScreen(
-                                                recipe: recipeDetails);
-                                          } else if (snapshot.hasError) {
-                                            // An error occurred while loading the recipe details
-                                            return Text(
-                                                'Error loading recipe details');
-                                          } else {
-                                            // Recipe details are still loading, display a loading indicator
-                                            return Center(
-                                                child:
-                                                    CircularProgressIndicator());
-                                          }
-                                        },
-                                      )),
-                                ),
-                              );
-                            }
-                          },
-                          child: RecipeCard(
-                              title: recipes[index].title,
-                              thumbnailUrl: recipes[index].image),
-                        );
-                      }),
-            )
+            RecipeList(isloading: isloading, recipes: recipes)
           ],
         ),
       )),
+    );
+  }
+}
+
+class RecipeList extends StatelessWidget {
+  const RecipeList({
+    super.key,
+    required this.isloading,
+    required this.recipes,
+  });
+
+  final bool isloading;
+  final List<Recipe> recipes;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: 200,
+      child: isloading
+          ? Center(
+              child: CircularProgressIndicator(),
+            )
+          : ListView.builder(
+              scrollDirection: Axis.horizontal,
+              itemCount: recipes.length,
+              itemBuilder: (context, index) {
+                return GestureDetector(
+                  onTap: () async {
+                    final recipeId = recipes[index].id;
+                    if (MapStorage.isContainsRecipeDetailbyID(
+                        recipeId)) {
+                      // Recipe details are already available, display the recipe detail screen
+                      final recipeDetails =
+                          MapStorage.getRecipeDetails(recipeId)!;
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: ((context) => RecipeDetailScreen(
+                              recipe: recipeDetails)),
+                        ),
+                      );
+                    } else {
+                      // Recipe details are not yet available, load them from the API
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: ((context) => FutureBuilder(
+                                future: RecipeAPI.fetchRecipeDetails(
+                                    recipeId),
+                                builder: (context, snapshot) {
+                                  if (snapshot.hasData) {
+                                    // Recipe details are available, display the recipe detail screen
+                                    final recipeDetails =
+                                        snapshot.data as RecipeDetails;
+                                    MapStorage.addRecipeDetails(
+                                        recipeId, recipeDetails);
+                                    return RecipeDetailScreen(
+                                        recipe: recipeDetails);
+                                  } else if (snapshot.hasError) {
+                                    // An error occurred while loading the recipe details
+                                    return Text(
+                                        'Error loading recipe details');
+                                  } else {
+                                    // Recipe details are still loading, display a loading indicator
+                                    return Center(
+                                        child:
+                                            CircularProgressIndicator());
+                                  }
+                                },
+                              )),
+                        ),
+                      );
+                    }
+                  },
+                  child: RecipeCard(
+                      title: recipes[index].title,
+                      thumbnailUrl: recipes[index].image),
+                );
+              }),
     );
   }
 }

@@ -17,7 +17,7 @@ class RecipeService extends GetxController {
   final authRepo = Get.put(AuthenticationFb());
   final _db = FirebaseFirestore.instance;
 
-  createRecipe(RecipeDetailed recipe) async {
+  createRecipe(RecipeDetails recipe) async {
     if (authRepo.firebaseUser.value?.uid != null) {
       recipe.uid = authRepo.firebaseUser.value?.uid;
     }
@@ -39,13 +39,13 @@ class RecipeService extends GetxController {
     });
   }
 
-  Future<List<RecipeDetailed>> fetchAllRecipeFromLoggedInUser() async {
+  Future<List<RecipeDetails>> fetchAllRecipeFromLoggedInUser() async {
     final uid = authRepo.firebaseUser.value?.uid;
     if (uid != null) {
       final snapshot =
           await _db.collection("recipe").where("uid", isEqualTo: uid).get();
       final recipeList =
-          snapshot.docs.map((e) => RecipeDetailed.fromFirebaseJson(e)).toList();
+          snapshot.docs.map((e) => RecipeDetails.fromFirebaseJson(e)).toList();
       return recipeList;
     } else {
       return [];
