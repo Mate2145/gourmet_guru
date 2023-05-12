@@ -49,7 +49,7 @@ class MyRecipes extends StatelessWidget {
                                   title: Text(
                                       "${controller.recipeList[index].title}"),
                                   trailing: Container(
-                                    width: 48,
+                                    width: 96,
                                     child: Row(children: [
                                       IconButton(
                                         onPressed: () {
@@ -57,6 +57,12 @@ class MyRecipes extends StatelessWidget {
                                               controller.recipeList[index]);
                                         },
                                         icon: Icon(Icons.remove),
+                                        splashRadius: 20,
+                                      ),
+                                      IconButton(
+                                        onPressed: () {
+                                        },
+                                        icon: Icon(Icons.edit),
                                         splashRadius: 20,
                                       )
                                     ]),
