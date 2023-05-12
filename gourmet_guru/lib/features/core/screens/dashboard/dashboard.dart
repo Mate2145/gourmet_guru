@@ -23,7 +23,7 @@ class DashBoard extends StatefulWidget {
 }
 
 class _DashBoardState extends State<DashBoard> {
-  late List<Recipe> recipes;
+  List<Recipe>? recipes;
   bool isloading = true;
   Map<int, RecipeDetails> recipeDetailsMap = {};
 
@@ -31,7 +31,7 @@ class _DashBoardState extends State<DashBoard> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    //getRecipes();
+    getRecipes();
   }
 
   Future<void> getRecipes() async {
@@ -120,23 +120,23 @@ class RecipeList extends StatelessWidget {
   });
 
   final bool isloading;
-  final List<Recipe> recipes;
+  final List<Recipe>? recipes;
 
   @override
   Widget build(BuildContext context) {
     return Container(
       height: 200,
-      child: isloading
+      child: isloading || recipes == null
           ? Center(
               child: CircularProgressIndicator(),
             )
           : ListView.builder(
               scrollDirection: Axis.horizontal,
-              itemCount: recipes.length,
+              itemCount: recipes!.length,
               itemBuilder: (context, index) {
                 return GestureDetector(
                   onTap: () async {
-                    final recipeId = recipes[index].id;
+                    final recipeId = recipes![index].id;
                     if (MapStorage.isContainsRecipeDetailbyID(
                         recipeId)) {
                       // Recipe details are already available, display the recipe detail screen
@@ -183,8 +183,8 @@ class RecipeList extends StatelessWidget {
                     }
                   },
                   child: RecipeCard(
-                      title: recipes[index].title,
-                      thumbnailUrl: recipes[index].image),
+                      title: recipes![index].title,
+                      thumbnailUrl: recipes![index].image),
                 );
               }),
     );
